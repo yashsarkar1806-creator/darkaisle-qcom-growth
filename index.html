@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DarkAisle · quick-commerce growth OS for FMCG brands (fictional startup concept)</title>
+<meta name="description" content="Fictional startup concept: DarkAisle shows FMCG brands which quick-commerce promos, stock fixes and new listings actually make money, dark store by dark store. Live demo on synthetic data.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="banner">Fictional startup concept by Yash Sarkar. All brands, stores and numbers on this page are <strong>synthetic</strong>. Not affiliated with any quick-commerce platform.</div>
+<header class="nav">
+  <a class="logo" href="#top">Dark<span>Aisle</span></a>
+  <nav><a href="#problem">Problem</a><a href="#how">How it works</a><a href="#demo">Live demo</a><a href="#pricing">Pricing</a><a href="#brief">Brief</a><a class="btn small" href="#waitlist" data-cta="nav">Join pilot</a></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div>
+    <p class="eyebrow">For FMCG brands selling on 10-minute delivery apps</p>
+    <h1>Find out which dark-store rupee actually sells.</h1>
+    <p class="lead">DarkAisle reads your quick-commerce sales, stock and promo data and tells you, store by store, which promos made money after pantry loading and cannibalisation, where stock-outs are leaking sales, and which listings to add or drop. Then it splits next month's trade budget for you.</p>
+    <div class="cta-row"><a class="btn" href="#demo" data-cta="hero_demo">Try the live demo</a><a class="btn ghost" href="#brief" data-cta="hero_brief">Read the startup brief</a></div>
+    <p class="fine">Demo: fictional brand "Chatkara Foods", 10 SKUs, 18 dark stores in 3 cities, 3 generic platforms, 12 weeks of seeded synthetic data.</p>
+  </div>
+  <div class="hero-card" id="heroStats" aria-live="polite"></div>
+</section>
+
+<section id="problem" class="band">
+  <h2>The problem</h2>
+  <div class="grid3">
+    <div class="card"><h3>Promo reports flatter you</h3><p>Platform dashboards show promo-week sales against last week. They leave out the dip after the promo, when shoppers have stocked up, and the sales your other SKUs lost to it. A promo can look like +80% and still lose money.</p></div>
+    <div class="card"><h3>Stock-outs are invisible</h3><p>A dark store holds a few thousand SKUs on a few shelves. When your bestseller runs out at 7pm on a Saturday, the shopper buys a rival and you never see that sale in any report.</p></div>
+    <div class="card"><h3>Range is decided store by store</h3><p>Each dark store lists only part of your range. Brand teams rarely know which stores are missing a SKU that sells well in the store down the road, or which listings just take up shelf space.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><strong>Connect</strong> the platform sales and inventory exports you already get (CSV, or an API where the platform offers one).</li>
+    <li><strong>Baseline</strong>: for every store and SKU, DarkAisle estimates what would have sold with no promo and full stock, adjusting for day of the week and using only clean days nearby.</li>
+    <li><strong>Read the promo honestly</strong>: incremental units minus the post-promo dip and same-category cannibalisation, priced at your real margin and funding share.</li>
+    <li><strong>Act</strong>: a ranked list of promos to scale, rework or stop (with the best discount depth), stock leaks to fix, listings to pitch, and a budget split with a payback hurdle.</li>
+  </ol>
+</section>
+
+<section id="demo" class="band">
+  <div class="demo-head">
+    <h2>Live demo <span class="tag">synthetic data</span></h2>
+    <div class="controls">
+      <label>Seed <input id="seed" type="number" value="20261114"></label>
+      <button id="regen" class="btn small">Regenerate</button>
+      <button id="dlRows" class="btn small ghost">Download raw CSV</button>
+    </div>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-tab="promo" class="active">Promo ROI</button>
+    <button role="tab" data-tab="avail">Availability leaks</button>
+    <button role="tab" data-tab="range">Assortment</button>
+    <button role="tab" data-tab="budget">Budget planner</button>
+    <button role="tab" data-tab="readout">Readout</button>
+  </div>
+
+  <div class="panel" id="tab-promo">
+    <p class="hint">Each promo ran on one platform for 7 days. "Naive uplift" compares with the week before, which is what most dashboards show. "True uplift" compares with a day-of-week adjusted, stock-adjusted baseline. Profit is net of the 7-day post-promo dip, cannibalisation of same-category SKUs, discount cost (at the brand's funding share) and the platform fee.</p>
+    <div class="table-wrap"><table id="promoTable"></table></div>
+    <div class="grid2">
+      <div class="card"><h3 id="promoChartTitle">Actual vs baseline</h3><svg id="promoChart" viewBox="0 0 560 240" role="img" aria-label="Daily actual vs baseline units"></svg><p class="legend"><span class="sw actual"></span>Actual units <span class="sw base"></span>Baseline (no promo, stock-adjusted) <span class="sw win"></span>Promo week</p></div>
+      <div class="card"><h3>Profit by discount depth</h3><svg id="depthChart" viewBox="0 0 560 240" role="img" aria-label="Profit by discount depth"></svg><p class="legend" id="depthLegend"></p><p class="hint">Uses the elasticity fitted from this promo and its observed dip and cannibalisation ratios. Treat it as a guide for the next test, not a forecast.</p></div>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="tab-avail">
+    <div class="kpis" id="availKpis"></div>
+    <div class="grid2">
+      <div class="card"><h3>Lost revenue by city</h3><div id="availCity" class="bars"></div></div>
+      <div class="card"><h3>Lost revenue by platform</h3><div id="availPlat" class="bars"></div></div>
+    </div>
+    <h3>Top 12 leaking store × SKU lines</h3>
+    <div class="table-wrap"><table id="availTable"></table></div>
+    <button id="dlAvail" class="btn small ghost">Download all lines (CSV)</button>
+  </div>
+
+  <div class="panel hidden" id="tab-range">
+    <label>Dark store <select id="storeSel"></select></label>
+    <div class="grid2">
+      <div class="card"><h3>Listed SKUs by margin per day</h3><div id="rangeListed" class="bars"></div></div>
+      <div class="card"><h3>Actions</h3><div id="rangeActions"></div></div>
+    </div>
+    <p class="hint">Velocity = units per fully stocked, non-promo day (weekday adjusted). Gaps are SKUs not listed here that sell in at least two same-city stores, scaled by this store's size index. Tail = less than half the store's median margin per day and well below same-city peers.</p>
+  </div>
+
+  <div class="panel hidden" id="tab-budget">
+    <div class="budget-row">
+      <label>Monthly trade budget (₹) <input id="budget" type="range" min="20000" max="500000" step="10000" value="200000"><output id="budgetOut"></output></label>
+      <label>Payback hurdle (₹ margin per ₹ spent) <input id="hurdle" type="number" min="0.5" max="3" step="0.1" value="1"></label>
+    </div>
+    <p class="hint">Each lever has a diminishing-returns curve: <em>cap × (1 − 2<sup>−spend / half-spend</sup>)</em>. Caps for availability, promos and listings come from the analysis; the sponsored-ads lever is an editable assumption. Money goes to whichever lever returns the most for the next ₹5,000, and stops when the next step falls below the hurdle.</p>
+    <div class="table-wrap"><table id="leverTable"></table></div>
+    <div class="kpis" id="budgetKpis"></div>
+    <div id="budgetBars" class="bars"></div>
+  </div>
+
+  <div class="panel hidden" id="tab-readout">
+    <pre id="readout"></pre>
+    <button id="copyReadout" class="btn small">Copy readout</button>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing (concept)</h2>
+  <div class="grid3">
+    <div class="card price"><h3>Pilot</h3><p class="amt">Free <small>for 6 weeks</small></p><ul><li>1 platform, 1 city</li><li>Promo ROI + availability leaks</li><li>Weekly readout email</li></ul></div>
+    <div class="card price featured"><h3>Growth</h3><p class="amt">₹39,000 <small>/ month</small></p><p class="fine">≈ A$720 / month for Australian brands</p><ul><li>All platforms and cities</li><li>Assortment gaps + budget planner</li><li>Slack alerts for stock-outs on top SKUs</li></ul></div>
+    <div class="card price"><h3>Enterprise</h3><p class="amt">Custom</p><ul><li>Multi-brand portfolios</li><li>Joint business plan packs for platform negotiations</li><li>Data warehouse export</li></ul></div>
+  </div>
+</section>
+
+<section id="brief" class="band">
+  <h2>Startup brief</h2>
+  <div class="grid2 brief">
+    <div><h3>Target customer</h3><p>Brand, e-commerce and trade-marketing managers at emerging and mid-size FMCG brands (snacks, beverages, personal care) that get 15–40% of online sales from quick commerce in India, and Australian challenger brands entering rapid-delivery apps. Beachhead: Indian D2C-born food and beverage brands with ₹20–200 crore revenue.</p></div>
+    <div><h3>Positioning</h3><p>For FMCG brand teams who spend trade money on quick-commerce apps without knowing what it returns, DarkAisle is the store-level profit lens that shows what each promo, stock fix and listing really earns. Unlike platform dashboards, it counts the dip and cannibalisation and puts a rupee value on stock-outs.</p></div>
+    <div><h3>Go-to-market</h3><ul><li>Free "promo post-mortem": upload one promo's export, get a one-page readout (lead magnet).</li><li>LinkedIn content on promo myths for FMCG and D2C operators; founder-led outbound to heads of e-commerce.</li><li>Partnerships with quick-commerce agencies and distributors who already run brands' accounts.</li><li>Land with promo ROI, expand to availability alerts and range planning.</li></ul></div>
+    <div><h3>Key metrics</h3><ul><li>North star: incremental margin found per customer per month</li><li>Pilot → paid conversion (target 35%)</li><li>Time to first readout (target &lt; 48 hours)</li><li>Weekly active brand users; alert action rate</li><li>Net revenue retention (target 115%+)</li></ul></div>
+  </div>
+  <p><a href="docs/BRIEF.md">Full brief: problem, positioning, GTM, pricing, metrics and risks →</a></p>
+</section>
+
+<section id="waitlist">
+  <h2>Join the pilot</h2>
+  <form id="waitForm" class="wait">
+    <input name="email" type="email" required placeholder="work@email.com" aria-label="Work email">
+    <select name="role" aria-label="Role"><option>Brand / marketing</option><option>E-commerce</option><option>Trade marketing / sales</option><option>Founder</option><option>Agency</option></select>
+    <button class="btn" type="submit" data-cta="waitlist">Request pilot</button>
+  </form>
+  <p class="fine" id="waitMsg">Concept only: nothing is sent anywhere. The form stores your entry in this browser and pushes a <code>generate_lead</code> event to <code>window.dataLayer</code> so you can see the tracking design.</p>
+</section>
+</main>
+
+<footer>
+  <p>DarkAisle is a fictional startup concept and portfolio project by <a href="https://github.com/yashsarkar1806-creator">Yash Sarkar</a>. "Chatkara Foods", its SKUs, stores and all data are synthetic and generated in your browser. Platform names are generic placeholders. <a href="https://github.com/yashsarkar1806-creator/darkaisle-qcom-growth">Source on GitHub</a> · MIT licence.</p>
+</footer>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

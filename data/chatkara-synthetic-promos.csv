@@ -1,0 +1,6 @@
+id,sku,platform,start,length,depth,brandFunded,fee,label
+P1,CH-MAS-50,Platform A,21,7,0.15,1,6000,"15% off, banner slot"
+P2,NM-MAK-90,Platform B,28,7,0.2,0.7,5000,"20% off, search boost"
+P3,DR-JAL-250,Platform C,42,7,0.25,1,6000,Buy 2 save 25%
+P4,CH-PER-150,Platform A,56,7,0.1,1,4000,"10% off, category carousel"
+P5,DR-NIM-250,Platform B,63,7,0.3,1,9000,"30% off, homepage takeover"

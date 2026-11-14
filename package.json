@@ -1,0 +1,8 @@
+{
+  "name": "darkaisle-qcom-growth",
+  "version": "1.0.0",
+  "description": "Fictional startup concept: quick-commerce promo ROI, availability leaks, assortment gaps and trade-budget planning for FMCG brands, with a live demo on synthetic data.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": { "test": "node --test test/*.test.js", "demo-data": "node scripts/generate-demo.mjs", "start": "python3 -m http.server 8080" }
+}

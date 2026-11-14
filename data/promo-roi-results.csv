@@ -1,0 +1,6 @@
+id,sku,skuName,platform,label,depth,stores,promoUnits,baseUnits,grossIncUnits,dipUnits,cannibUnits,netIncUnits,uplift,naiveUplift,elasticity,discountCost,fee,spend,profit,roi,verdict,dipRatio,cannibRatio,bestDepth,bestDepthProfit,bestDepthSpend
+P1,CH-MAS-50,Masala Crunch Chips 50g,Platform A,"15% off, banner slot",0.15,6,4313,2449.93,1863.07,237.57,42.52,1582.98,0.76,0.87,3.77,12939,6000,18939,-4554,-0.24,Stop,0.13,0.01,0,0,0
+P2,NM-MAK-90,Roasted Makhana Pudina 90g,Platform B,"20% off, search boost",0.2,3,1210,351.32,858.68,133.17,54.04,671.47,2.44,2.47,6.18,16771,5000,21771,9316,0.43,Scale,0.16,0.03,0.35,18832,79200
+P3,DR-JAL-250,Jaljeera Fizz 250ml,Platform C,Buy 2 save 25%,0.25,6,2797,1826.23,970.77,76.38,88.18,806.22,0.53,0.51,1.71,20978,6000,26978,-16237,-0.6,Stop,0.08,0.1,0,0,0
+P4,CH-PER-150,Peri Peri Chips 150g,Platform A,"10% off, category carousel",0.1,6,1580,892.71,687.29,56.02,116.88,514.39,0.77,0.79,5.71,9480,4000,13480,2512,0.19,Rework,0.08,0.06,0.2,6740,37557
+P5,DR-NIM-250,Nimbu Soda 250ml,Platform B,"30% off, homepage takeover",0.3,5,1626,1110.67,515.33,156.97,135.39,222.97,0.46,0.52,1.27,14634,9000,23634,-20848,-0.88,Stop,0.3,0.29,0,0,0

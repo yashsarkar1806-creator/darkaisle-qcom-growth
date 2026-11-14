@@ -1,0 +1,11 @@
+id,name,category,price,unitMargin
+CH-MAS-50,Masala Crunch Chips 50g,Chips,20,9
+CH-SAL-50,Sea Salt Chips 50g,Chips,20,9
+CH-PER-150,Peri Peri Chips 150g,Chips,60,27
+NM-BHU-200,Bhujia Mix 200g,Namkeen,55,24.8
+NM-MAK-90,Roasted Makhana Pudina 90g,Namkeen,99,44.6
+NM-CHA-150,Chana Jor Garam 150g,Namkeen,45,20.2
+DR-JAL-250,Jaljeera Fizz 250ml,Drinks,30,13.5
+DR-NIM-250,Nimbu Soda 250ml,Drinks,30,13.5
+DR-KOK-200,Kokum Cooler 200ml,Drinks,40,18
+DR-ZER-300,Zero Sugar Cola 300ml,Drinks,45,20.2
